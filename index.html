@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A timeline report of Souptik De's contributions to the OpenPrinting CPDB stack, February to October 2026.">
+<title>Souptik De — CPDB Stack Contribution Report</title>
+<style>
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface-soft: #f8f9fd;
+  --ink: #182033;
+  --muted: #5f6b85;
+  --muted-2: #8791a8;
+  --line: #e4e8f2;
+  --line-strong: #d4daea;
+  --accent: #4f46e5;
+  --accent-deep: #3730a3;
+  --libs: #0f9488;
+  --libs-soft: #e4f7f4;
+  --backend-soft: #eef0ff;
+  --add: #0b7a53;
+  --add-soft: #e8f7f0;
+  --del: #b23b45;
+  --del-soft: #fdeef0;
+  --warm: #e5813c;
+  --shadow: 0 1px 2px rgba(21, 31, 61, .04), 0 14px 36px rgba(21, 31, 61, .06);
+  --shadow-sm: 0 1px 2px rgba(21, 31, 61, .05), 0 5px 16px rgba(21, 31, 61, .05);
+  --radius: 18px;
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent-deep); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 3px solid rgba(79,70,229,.35); outline-offset: 3px; border-radius: 4px; }
+code { font-family: var(--mono); font-size: .9em; }
+.wrap { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+.skip { position: absolute; left: -999px; top: 0; background: #fff; color: #000; padding: 10px 14px; z-index: 99; }
+.skip:focus { left: 12px; top: 12px; }
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(89, 104, 255, .38), transparent 32%),
+    radial-gradient(circle at 12% 110%, rgba(15, 148, 136, .22), transparent 38%),
+    linear-gradient(132deg, #0b1228 0%, #141d3d 46%, #1c2753 100%);
+  color: #f4f6ff;
+  padding: 28px 0 0;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 92%);
+  pointer-events: none;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -140px;
+  bottom: -210px;
+  width: 560px;
+  height: 560px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 50%;
+  box-shadow: 0 0 0 70px rgba(255,255,255,.028), 0 0 0 145px rgba(255,255,255,.018);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 2; padding: 36px 0 42px; }
+.brandbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 52px; }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 650; letter-spacing: -.01em; color: #fff; }
+.brand-mark {
+  display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px;
+  background: linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.06));
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18);
+}
+.brand-mark svg { width: 22px; height: 22px; }
+.brand-sub { display: block; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: rgba(233,238,255,.62); margin-top: 2px; }
+.report-stamp {
+  font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: rgba(233,238,255,.65);
+  border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 7px 13px; white-space: nowrap;
+  background: rgba(255,255,255,.045);
+}
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(290px, .85fr); gap: 48px; align-items: end; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 9px; padding: 6px 11px 6px 8px;
+  border-radius: 999px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06);
+  font-size: 11px; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; color: #dbe1ff;
+}
+.eyebrow .pulse { width: 7px; height: 7px; border-radius: 50%; background: #7ee7d8; box-shadow: 0 0 0 4px rgba(126,231,216,.12); }
+.hero h1 {
+  margin: 20px 0 10px; font-size: clamp(54px, 7.2vw, 94px); line-height: .94;
+  letter-spacing: -.055em; font-weight: 760; color: #fff;
+}
+.hero h1 span { color: #aab4ff; }
+.lede { max-width: 720px; margin: 18px 0 0; font-size: clamp(18px, 2vw, 22px); line-height: 1.42; color: rgba(238,241,255,.82); letter-spacing: -.012em; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 28px; }
+.meta-pill { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: rgba(240,243,255,.82); background: rgba(255,255,255,.065); border: 1px solid rgba(255,255,255,.13); border-radius: 999px; padding: 7px 11px; }
+.meta-pill b { color: #fff; font-weight: 700; }
+.hero-card {
+  position: relative; z-index: 1; background: rgba(255,255,255,.075); border: 1px solid rgba(255,255,255,.16);
+  border-radius: 20px; padding: 22px; backdrop-filter: blur(12px); box-shadow: 0 24px 80px rgba(0,0,0,.24);
+}
+.hero-card-label { font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(220,227,255,.58); margin-bottom: 14px; }
+.signature { display: grid; gap: 1px; }
+.signature-row { display: flex; align-items: flex-start; gap: 11px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.09); font-size: 13.5px; color: rgba(240,243,255,.88); line-height: 1.35; }
+.signature-row:first-child { border-top: 0; }
+.sig-num { flex: 0 0 auto; margin-top: 1px; font-family: var(--mono); font-size: 10px; color: #9fafff; }
+.hero-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.12); font-size: 11px; color: rgba(226,232,255,.62); }
+.hero-card-foot b { color: #fff; font-size: 14px; }
+
+/* Sticky nav */
+.section-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.88); border-bottom: 1px solid rgba(214,220,235,.85); backdrop-filter: blur(14px); }
+.section-nav .wrap { display: flex; gap: 4px; align-items: center; height: 52px; overflow-x: auto; scrollbar-width: none; }
+.section-nav .wrap::-webkit-scrollbar { display: none; }
+.section-nav a { flex: 0 0 auto; padding: 7px 11px; border-radius: 8px; color: var(--muted); font-size: 12px; font-weight: 650; letter-spacing: .03em; text-transform: uppercase; }
+.section-nav a:hover { text-decoration: none; color: var(--ink); background: var(--surface-soft); }
+.nav-spacer { flex: 1 0 20px; }
+.nav-date { flex: 0 0 auto; font-size: 11px; color: var(--muted-2); font-weight: 600; letter-spacing: .03em; }
+
+/* Sections */
+.section { padding: 74px 0 0; scroll-margin-top: 64px; }
+.section:last-of-type { padding-bottom: 80px; }
+.section-head { max-width: 780px; margin-bottom: 26px; }
+.kicker { display: flex; align-items: center; gap: 9px; margin: 0 0 9px; font-size: 11px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.kicker::before { content: ""; width: 23px; height: 2px; border-radius: 2px; background: var(--accent); }
+h2 { margin: 0; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.12; letter-spacing: -.035em; font-weight: 740; }
+.section-head p { margin: 12px 0 0; color: var(--muted); font-size: 16px; max-width: 720px; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin-top: 28px; position: relative; z-index: 3; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 15px; padding: 17px 16px 14px; box-shadow: var(--shadow-sm); }
+.stat-label { font-size: 10px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; color: var(--muted-2); }
+.stat-value { margin-top: 5px; font-size: clamp(24px, 2.8vw, 34px); line-height: 1; font-weight: 760; letter-spacing: -.04em; }
+.stat-value .unit { font-size: 13px; font-weight: 650; letter-spacing: 0; color: var(--muted); }
+.stat-sub { margin-top: 7px; font-size: 11px; color: var(--muted); }
+.stat.add .stat-value { color: var(--add); }
+.stat.del .stat-value { color: var(--del); }
+.stat.accent .stat-value { color: var(--accent-deep); }
+
+/* Overview */
+.overview-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); gap: 28px; align-items: start; }
+.prose p { margin: 0 0 14px; color: #3f4a63; font-size: 16px; }
+.prose strong { color: var(--ink); }
+.phase-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-sm); }
+.phase-panel h3 { margin: 0 0 14px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-2); }
+.phase-list { display: grid; gap: 10px; }
+.phase-item { display: grid; grid-template-columns: 30px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.phase-item:first-child { border-top: 0; padding-top: 0; }
+.phase-num { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; font-family: var(--mono); font-size: 10px; color: var(--accent-deep); background: var(--backend-soft); }
+.phase-name { font-size: 13px; font-weight: 650; }
+.phase-date { font-size: 10px; color: var(--muted-2); font-family: var(--mono); }
+
+/* Timeline */
+.timeline { position: relative; }
+.timeline-month { display: grid; grid-template-columns: 156px minmax(0, 1fr); gap: 26px; padding: 0 0 30px; }
+.month-block { position: sticky; top: 72px; align-self: start; padding-top: 4px; }
+.month-name { display: block; font-size: 34px; line-height: 1; font-weight: 780; letter-spacing: -.045em; color: var(--ink); }
+.month-year { display: block; margin-top: 2px; font-family: var(--mono); font-size: 11px; color: var(--muted-2); }
+.month-phase { display: inline-block; margin-top: 12px; padding: 4px 7px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.month-events { position: relative; padding-left: 22px; }
+.month-events::before { content: ""; position: absolute; left: 5px; top: 10px; bottom: 12px; width: 2px; background: linear-gradient(var(--line-strong), var(--line) 70%, transparent); }
+.timeline-event { position: relative; padding: 0 0 14px; }
+.event-dot { position: absolute; left: -22px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); box-shadow: 0 0 0 4px var(--bg); z-index: 1; }
+.timeline-event:first-child .event-dot { background: var(--accent); }
+.event-card { background: var(--surface); border: 1px solid var(--line); border-radius: 15px; padding: 16px 18px 14px; box-shadow: 0 1px 2px rgba(21,31,61,.03); transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.event-card:hover { border-color: var(--line-strong); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.event-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 6px; }
+.event-meta time { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .02em; color: var(--muted); margin-right: 3px; }
+.event-card h3 { margin: 0 0 5px; font-size: 16px; line-height: 1.3; letter-spacing: -.015em; }
+.event-card p { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+.event-foot { margin-top: 10px; }
+.event-note { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--muted-2); font-style: italic; }
+
+/* Chips */
+.repo-badge { display: inline-flex; align-items: center; height: 21px; padding: 0 7px; border-radius: 5px; font-size: 9px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.repo-badge.backend { background: var(--backend-soft); color: var(--accent-deep); }
+.repo-badge.libs { background: var(--libs-soft); color: #0b6c64; }
+.pr-link { display: inline-flex; align-items: center; height: 21px; padding: 0 7px; border-radius: 5px; font-family: var(--mono); font-size: 10px; font-weight: 700; border: 1px solid var(--line); color: var(--muted); background: var(--surface-soft); }
+.pr-link:hover { text-decoration: none; border-color: var(--line-strong); color: var(--ink); }
+.pr-link.backend { border-color: #dfe2ff; background: #f5f6ff; color: var(--accent-deep); }
+.pr-link.libs { border-color: #cdeee9; background: #f1fbf9; color: #0b6c64; }
+.diff { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; font-weight: 650; }
+.diff.compact { gap: 6px; font-size: 10px; }
+.add { color: var(--add); background: var(--add-soft); border-radius: 4px; padding: 2px 5px; }
+.del { color: var(--del); background: var(--del-soft); border-radius: 4px; padding: 2px 5px; }
+.file-count { color: var(--muted-2); padding: 2px 0; }
+.muted-cell { color: var(--muted-2); font-size: 11px; }
+
+/* Activity / chart */
+.activity-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(300px, .85fr); gap: 18px; align-items: stretch; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+.chart-panel { padding: 20px 20px 16px; }
+.panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.panel-head h3 { margin: 0; font-size: 16px; letter-spacing: -.01em; }
+.panel-head p { margin: 3px 0 0; font-size: 12px; color: var(--muted); }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 10px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+.legend .backend { background: var(--accent); }
+.legend .libs { background: var(--libs); }
+.chart { display: flex; gap: 8px; align-items: flex-end; height: 236px; padding: 20px 4px 0; background-image: repeating-linear-gradient(to top, var(--line) 0, var(--line) 1px, transparent 1px, transparent 48px); border-bottom: 1px solid var(--line); }
+.chart-col { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; min-width: 0; }
+.bar-area { position: relative; display: flex; align-items: flex-end; justify-content: center; width: 100%; height: 100%; }
+.bar { width: min(44px, 74%); min-height: 3px; border-radius: 5px 5px 2px 2px; overflow: hidden; display: flex; flex-direction: column-reverse; box-shadow: 0 3px 10px rgba(79,70,229,.12); }
+.bar.zero { height: 2px !important; background: var(--line-strong); box-shadow: none; }
+.seg { display: block; width: 100%; }
+.seg.backend { background: linear-gradient(180deg, #6159f2, var(--accent)); }
+.seg.libs { background: linear-gradient(180deg, #24b7a8, var(--libs)); }
+.bar-count { position: absolute; bottom: calc(100% + 4px); font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--muted); }
+.muted-count { color: var(--muted-2); font-weight: 500; }
+.chart-month { flex: 0 0 auto; margin-top: 8px; font-family: var(--mono); font-size: 10px; color: var(--muted-2); text-transform: uppercase; letter-spacing: .06em; }
+.chart-foot { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: 10px; color: var(--muted-2); }
+.repo-panel { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.repo-card { border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px; background: var(--surface-soft); }
+.repo-card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.repo-title { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; }
+.repo-dot { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+.repo-dot.backend { background: var(--accent); }
+.repo-dot.libs { background: var(--libs); }
+.repo-link { font-size: 9px; color: var(--muted-2); text-transform: uppercase; letter-spacing: .07em; }
+.repo-big { margin-top: 8px; font-size: 27px; line-height: 1; font-weight: 760; letter-spacing: -.04em; }
+.repo-big span { font-size: 10px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+.repo-stats { margin-top: 7px; }
+.repo-meter { height: 5px; margin-top: 11px; border-radius: 4px; background: #e9ecf6; overflow: hidden; }
+.repo-meter span { display: block; height: 100%; border-radius: 4px; }
+.repo-meter .backend { background: var(--accent); }
+.repo-meter .libs { background: var(--libs); }
+.repo-caption { margin-top: 5px; font-size: 9px; color: var(--muted-2); }
+
+/* File churn */
+.churn-panel { margin-top: 18px; padding: 20px; }
+.churn-grid { display: grid; gap: 9px; margin-top: 8px; }
+.churn-row { display: grid; grid-template-columns: minmax(180px, 1.15fr) minmax(120px, 1fr) 55px; gap: 12px; align-items: center; }
+.churn-label { font-family: var(--mono); font-size: 10px; color: var(--muted); overflow-wrap: anywhere; }
+.churn-track { height: 7px; border-radius: 4px; background: #edf0f7; overflow: hidden; }
+.churn-track span { display: block; height: 100%; border-radius: 4px; }
+.churn-track .backend { background: linear-gradient(90deg, #b9b7ff, var(--accent)); }
+.churn-track .libs { background: linear-gradient(90deg, #a7e9e2, var(--libs)); }
+.churn-val { text-align: right; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+
+/* Workstreams */
+.workstream-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.workstream { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; min-height: 210px; overflow: hidden; }
+.workstream::after { content: ""; position: absolute; right: -26px; top: -34px; width: 100px; height: 100px; border: 1px solid var(--line); border-radius: 50%; box-shadow: 0 0 0 16px rgba(79,70,229,.018); }
+.ws-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ws-num { font-family: var(--mono); font-size: 10px; color: var(--accent); font-weight: 700; }
+.ws-prs { font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--muted-2); }
+.workstream h3 { margin: 10px 0 7px; font-size: 18px; letter-spacing: -.02em; }
+.workstream p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; flex: 1; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+.ws-foot { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+
+/* Ledger */
+.table-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+caption { text-align: left; padding: 16px 18px 0; color: var(--muted); font-size: 12px; }
+th { text-align: left; padding: 12px 12px; border-bottom: 1px solid var(--line-strong); font-size: 9px; letter-spacing: .11em; text-transform: uppercase; color: var(--muted-2); white-space: nowrap; background: var(--surface); position: sticky; top: 0; z-index: 1; }
+td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: #fafbff; }
+.date-cell { white-space: nowrap; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.title-cell { min-width: 270px; }
+.ledger-title { display: block; font-weight: 650; color: var(--ink); font-size: 12.5px; }
+.ledger-full { display: block; color: var(--muted-2); font-size: 10px; line-height: 1.35; margin-top: 2px; max-width: 470px; }
+.theme-tag { display: inline-block; padding: 3px 6px; border-radius: 4px; background: var(--surface-soft); border: 1px solid var(--line); font-size: 9px; font-weight: 650; color: var(--muted); white-space: nowrap; }
+.theme-tag.closed { background: var(--del-soft); border-color: #f3d6da; color: var(--del); }
+.num-cell { white-space: nowrap; text-align: right; }
+.num-plain { text-align: right; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.closed-row { background: #fffafa; }
+.closed-row .ledger-title { color: var(--muted); }
+
+/* Appendix */
+.appendix-grid { display: grid; gap: 18px; }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden; }
+summary { cursor: pointer; padding: 17px 20px; font-weight: 700; font-size: 14px; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-family: var(--mono); font-size: 16px; color: var(--muted-2); }
+details[open] summary::after { content: "−"; }
+summary span { font-size: 11px; color: var(--muted-2); font-weight: 500; }
+.details-body { border-top: 1px solid var(--line); padding: 0 20px 4px; }
+.details-body .table-wrap { border: 0; box-shadow: none; border-radius: 0; }
+.details-body table { font-size: 11px; }
+.details-body th { top: 0; }
+.commit-link code { color: var(--accent-deep); }
+.commit-subject { font-size: 11px; color: var(--muted); min-width: 300px; }
+.method { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.method-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-sm); }
+.method-card h3 { margin: 0 0 9px; font-size: 14px; }
+.method-card p, .method-card li { color: var(--muted); font-size: 12.5px; line-height: 1.6; }
+.method-card p { margin: 0 0 8px; }
+.method-card ul { margin: 0; padding-left: 18px; }
+.method-card li { margin-bottom: 5px; }
+.method-card code { color: var(--ink); background: var(--surface-soft); border: 1px solid var(--line); border-radius: 4px; padding: 1px 4px; font-size: 10px; }
+.branch-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+.branch-list code { font-size: 9px; }
+.footnote { margin-top: 18px; font-size: 11px; color: var(--muted-2); }
+
+footer { border-top: 1px solid var(--line); background: var(--surface); padding: 26px 0 34px; }
+.footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
+.footer-brand { font-size: 12px; font-weight: 700; letter-spacing: -.01em; }
+.footer-brand span { color: var(--muted-2); font-weight: 500; }
+.footer-meta { font-size: 10px; color: var(--muted-2); }
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 30px; align-items: start; }
+  .hero-card { max-width: 540px; }
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .overview-grid, .activity-grid { grid-template-columns: 1fr; }
+  .timeline-month { grid-template-columns: 112px minmax(0, 1fr); gap: 18px; }
+  .month-name { font-size: 28px; }
+  .workstream-grid { grid-template-columns: 1fr; }
+  .method { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .wrap { width: min(100% - 30px, 1160px); }
+  .hero-inner { padding: 24px 0 34px; }
+  .brandbar { margin-bottom: 34px; }
+  .report-stamp { display: none; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat-value { font-size: 27px; }
+  .timeline-month { grid-template-columns: 1fr; gap: 10px; }
+  .month-block { position: static; display: flex; align-items: baseline; gap: 7px; padding: 0 0 2px; }
+  .month-name { font-size: 24px; }
+  .month-year { margin-top: 0; }
+  .month-phase { margin-top: 0; margin-left: 4px; }
+  .month-events { padding-left: 18px; }
+  .month-events::before { left: 4px; }
+  .event-dot { left: -18px; }
+  .churn-row { grid-template-columns: 1fr 58px; }
+  .churn-track { grid-column: 1 / -1; grid-row: 2; }
+  .churn-val { grid-column: 2; grid-row: 1; }
+  .chart { height: 200px; gap: 4px; }
+  .bar { width: 70%; }
+  .section { padding-top: 56px; }
+  .ledger-full { display: none; }
+  .title-cell { min-width: 170px; }
+  .nav-date { display: none; }
+}
+@media print {
+  body { background: #fff; }
+  .hero { background: #111a35 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section-nav, .hero-card, .skip { display: none; }
+  .section { padding-top: 34px; break-inside: avoid; }
+  .event-card, .workstream, .repo-card, .stat, .panel, .table-wrap, details { box-shadow: none; }
+  .timeline-month { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="brandbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="17" width="34" height="18" rx="3.5"/>
+            <path d="M14 17V9h20v8M14 31h20v9H14z"/>
+            <circle cx="35" cy="23" r="1.7" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <span>OpenPrinting<span class="brand-sub">CPDB stack · contribution report</span></span>
+      </div>
+      <div class="report-stamp">Prepared Oct 24, 2026</div>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> Common Print Dialog Backends</div>
+        <h1>Souptik De<span>.</span></h1>
+        <p class="lede">A timeline of work across the CPDB stack — from CI foundations and print-pipeline correctness to container-ready FD passing, thread safety, and the capabilities and translation-quality APIs.</p>
+        <div class="hero-meta">
+          <span class="meta-pill"><b>Feb 10 – Oct 11, 2026</b> · 9 months</span>
+          <span class="meta-pill"><b>23</b> merged PRs</span>
+          <span class="meta-pill"><b>2</b> repositories</span>
+          <span class="meta-pill"><b>All</b> merges by Till Kamppeter</span>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Signature contributions">
+        <div class="hero-card-label">Signature contributions</div>
+        <div class="signature">
+          <div class="signature-row"><span class="sig-num">01</span><span>Unblocked print submission and authenticated CUPS policies</span></div>
+          <div class="signature-row"><span class="sig-num">02</span><span>Enabled print FD passing across Snap and container sandboxes</span></div>
+          <div class="signature-row"><span class="sig-num">03</span><span>Delivered GetAllCapabilities with locale and translation quality</span></div>
+          <div class="signature-row"><span class="sig-num">04</span><span>Established build, test and CodeQL pipelines in both repositories</span></div>
+        </div>
+        <div class="hero-card-foot"><span>Merged pull requests</span><b>23</b></div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<nav class="section-nav" aria-label="Report sections">
+  <div class="wrap">
+    <a href="#overview">Overview</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#activity">Activity</a>
+    <a href="#workstreams">Workstreams</a>
+    <a href="#ledger">PR ledger</a>
+    <a href="#appendix">Appendix</a>
+    <span class="nav-spacer"></span>
+    <span class="nav-date">Report · Oct 2026</span>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="wrap">
+    <section class="stats" aria-label="Contribution summary">
+      <div class="stat accent"><div class="stat-label">Merged PRs</div><div class="stat-value">23</div><div class="stat-sub">of 24 opened</div></div>
+      <div class="stat"><div class="stat-label">Merged commits</div><div class="stat-value">24</div><div class="stat-sub">on upstream master</div></div>
+      <div class="stat"><div class="stat-label">Files touched</div><div class="stat-value">17</div><div class="stat-sub">unique paths</div></div>
+      <div class="stat add"><div class="stat-label">Lines added</div><div class="stat-value">+3,390</div><div class="stat-sub">across merged PRs</div></div>
+      <div class="stat del"><div class="stat-label">Lines removed</div><div class="stat-value">−489</div><div class="stat-sub">across merged PRs</div></div>
+      <div class="stat"><div class="stat-label">Active span</div><div class="stat-value">9 <span class="unit">mo</span></div><div class="stat-sub">Feb – Oct 2026</div></div>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="section-head">
+        <p class="kicker">Overview</p>
+        <h2>From broken print jobs to a shipping capabilities API</h2>
+        <p>The work follows a clear arc: make the projects testable, fix the print path, make it portable across sandboxes, then extend the API and harden memory safety.</p>
+      </div>
+      <div class="overview-grid">
+        <div class="prose">
+          <p>Between <strong>February 10</strong> and <strong>October 11, 2026</strong>, Souptik De authored <strong>24 merged commits through 23 pull requests</strong> across <strong>cpdb-backend-cups</strong> and <strong>cpdb-libs</strong>. A 24th PR, #54, was closed without merge and superseded by #55.</p>
+          <p>The first phase builds the safety net: GitHub Actions build/test and CodeQL workflows in both repositories, a C test harness, and unit coverage for URI parsing. The second phase repairs print submission itself — stack-corrupting buffer sizes, an <code>accept()</code> deadlock, uninitialised socket paths, missing environment handling, opaque D-Bus errors, and a 401 failure under authenticated CUPS policies.</p>
+          <p>The largest architectural change is <strong>print FD passing</strong>: the frontend now tries <code>printFd</code> first, which works across Snap/container boundaries, and falls back to the legacy socket path only for older backends. Later work adds a <code>GMutex</code> around printer/dialog state, delivers the <strong>GetAllCapabilities</strong> model, and introduces <strong>translation-quality</strong> tags with a 3-way capability merge.</p>
+          <p>The final phase is about quality: translation-path and option-path leak fixes, CUPS 3.x shim repairs, a cppcheck cleanup, and a portable <code>find_cupsd()</code> helper that lets <code>make check</code> pass on Arch usrmerge and restrictive-permission installs.</p>
+        </div>
+        <aside class="phase-panel" aria-label="Contribution phases">
+          <h3>Six phases</h3>
+          <div class="phase-list">
+            <div class="phase-item"><span class="phase-num">01</span><span class="phase-name">CI & test foundations</span><span class="phase-date">Feb–Mar</span></div>
+            <div class="phase-item"><span class="phase-num">02</span><span class="phase-name">Print pipeline hardening</span><span class="phase-date">Mar</span></div>
+            <div class="phase-item"><span class="phase-num">03</span><span class="phase-name">Container FD passing</span><span class="phase-date">Apr</span></div>
+            <div class="phase-item"><span class="phase-num">04</span><span class="phase-name">Thread safety</span><span class="phase-date">Jun</span></div>
+            <div class="phase-item"><span class="phase-num">05</span><span class="phase-name">Capabilities & i18n</span><span class="phase-date">Aug</span></div>
+            <div class="phase-item"><span class="phase-num">06</span><span class="phase-name">Portability & cleanup</span><span class="phase-date">Aug–Oct</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="section-head">
+        <p class="kicker">The timeline</p>
+        <h2>Merged work, month by month</h2>
+        <p>Merge dates and PR numbers are shown below. The February entry marks the start of development, before the first PR merged. Every merged PR is included.</p>
+      </div>
+      <div class="timeline">
+        
+        <section class="timeline-month">
+          <div class="month-block"><span class="month-name">FEB</span><span class="month-year">2026</span><span class="month-phase">Groundwork</span></div>
+          <div class="month-events">
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Feb 10–23</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/45" target="_blank" rel="noopener" title="Added Build &amp; Test and Codeql workflows">#45</a></div>
+                <h3>CI and static-analysis foundations drafted</h3>
+                <p>The first GitHub Actions build workflow is committed on Feb 10. CodeQL and the matching cpdb-libs workflows follow through Feb 23; PR #45 opens on Feb 21 and later carries the backend build/test pipeline.</p>
+                <div class="event-foot"><span class="event-note">development milestone</span></div>
+                <div class="event-note">First authored commit: Feb 10, 2026</div>
+              </div>
+            </article></div>
+        </section>
+        <section class="timeline-month">
+          <div class="month-block"><span class="month-name">MAR</span><span class="month-year">2026</span><span class="month-phase">Pipeline hardening</span></div>
+          <div class="month-events">
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 2</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/45" target="_blank" rel="noopener" title="Added Build &amp; Test and Codeql workflows">#45</a></div>
+                <h3>Build/test and CodeQL pipeline lands</h3>
+                <p>Adds build.yml and codeql.yml (with a manual build because autobuild failed), the test-internal.h harness, and the first unit test for extractHostFromURI. This establishes repeatable CI and a C test framework for the backend.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+497</span><span class="del">−2</span><span class="file-count">6 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 3</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/48" target="_blank" rel="noopener" title="Add NULL input validation in extractHostFromURI ">#48</a></div>
+                <h3>Host URI parsing gets NULL validation</h3>
+                <p>Adds NULL input validation to extractHostFromURI and wires libcupsfilter into the Makefile and CI so the unit test links and runs.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+6</span><span class="del">−2</span><span class="file-count">3 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 4</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/49" target="_blank" rel="noopener" title="Fix buffer size issues in print_socket()  ">#49</a></div>
+                <h3>Buffer overruns fixed in print_socket</h3>
+                <p>Adds JOB_ID_BUFLEN and SOCKET_PATH_BUFLEN, fixes sizeof(pointer) misuse, and replaces a 256-byte socket buffer that was receiving 1024-byte paths, causing stack corruption and invalid UTF-8.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+8</span><span class="del">−5</span><span class="file-count">3 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 4</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/50" target="_blank" rel="noopener" title="Fix print job submission: resolve deadlock and socket communication issues">#50</a></div>
+                <h3>Print-submission deadlock broken</h3>
+                <p>Moves accept() into print_data_thread and reorders cupsStartDestDocument so the backend can return the socket path immediately while the worker waits for the frontend connection.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+14</span><span class="del">−16</span><span class="file-count">3 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 8</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/51" target="_blank" rel="noopener" title="Add workflow_dispatch trigger to Build and CodeQL workflows for manual trigger">#51</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/52" target="_blank" rel="noopener" title="Improve logging by changing printf to logwarn">#52</a></div>
+                <h3>CI controls and consistent logging</h3>
+                <p>Adds workflow_dispatch to the build and CodeQL workflows for manual runs, and replaces printf diagnostics with logwarn for consistent GLib logging.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+18</span><span class="del">−16</span><span class="file-count">3 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 8</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/53" target="_blank" rel="noopener" title="Fix socket path not returned to frontend on print job failure">#53</a></div>
+                <h3>Failed jobs stop returning garbage socket paths</h3>
+                <p>Initialises job ID and socket buffers, then returns a D-Bus error when print_socket fails so the frontend never receives uninitialised stack data.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+27</span><span class="del">−13</span><span class="file-count">2 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 9</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/55" target="_blank" rel="noopener" title="Improve logging by replacing perror with logwarn">#55</a></div>
+                <h3>perror() replaced with logwarn()</h3>
+                <p>Completes the logging migration. PR #54 was closed without merge and superseded by this reviewed version.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+8</span><span class="del">−8</span><span class="file-count">1 file</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 17</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/58" target="_blank" rel="noopener" title="Add error handling for missing HOME environment variable in print_socket and add cupsFreeOptions and g_free for failure return paths">#58</a></div>
+                <h3>Failure paths get environment and cleanup handling</h3>
+                <p>Handles a missing HOME environment variable in print_socket and frees CUPS options and GLib allocations on failure paths.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+11</span><span class="del">−1</span><span class="file-count">1 file</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 18</time><span class="repo-badge libs">libs</span><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/87" target="_blank" rel="noopener" title="Add GitHub Actions workflows for build, test, and CodeQL analysis">#87</a></div>
+                <h3>cpdb-libs gets build, test and CodeQL CI</h3>
+                <p>Brings the same build/test and static-analysis workflows to cpdb-libs, giving both sides of the stack the same quality gates.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+84</span><span class="del">−0</span><span class="file-count">2 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 19</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/59" target="_blank" rel="noopener" title="Enhance print_socket error handling and update Dbus error return for frontend error display">#59</a></div>
+                <h3>Real CUPS errors reach the frontend</h3>
+                <p>Captures cupsLastErrorString() and passes the exact reason through D-Bus so the frontend can display the actual job-creation failure instead of a generic message.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+11</span><span class="del">−7</span><span class="file-count">3 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 23</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/61" target="_blank" rel="noopener" title="Fix auth failure when printing to authenticated CUPS policy">#61</a></div>
+                <h3>Authenticated CUPS policies now work</h3>
+                <p>Switches job I/O to CUPS_HTTP_DEFAULT, using cupsd&#x27;s Unix socket and SO_PEERCRED authentication; keeps cupsStartDestDocument, cupsWriteRequestData and cupsFinishDestDocument on the same worker thread.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+83</span><span class="del">−36</span><span class="file-count">2 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Mar 26</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/64" target="_blank" rel="noopener" title="Stop manually managing http_t, use CUPS_HTTP_DEFAULT everywhere">#64</a></div>
+                <h3>Manual http_t management removed</h3>
+                <p>Replaces per-printer http_t state with CUPS_HTTP_DEFAULT everywhere, simplifies destination setup, and fixes a cups_get_Resolution leak.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+38</span><span class="del">−41</span><span class="file-count">2 files</span></span></div>
+                
+              </div>
+            </article></div>
+        </section>
+        <section class="timeline-month">
+          <div class="month-block"><span class="month-name">APR</span><span class="month-year">2026</span><span class="month-phase">Container support</span></div>
+          <div class="month-events">
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Apr 27</time><span class="repo-badge backend">backend</span><span class="repo-badge libs">libs</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/65" target="_blank" rel="noopener" title="Adding containerized environment support socket path communication with frontend">#65</a><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/93" target="_blank" rel="noopener" title="Adding containerized environment support for socket path communication with backend ">#93</a></div>
+                <h3>Container-ready print FD passing, both sides</h3>
+                <p>The backend and frontend now try the FD-passing path first (printFd), which works across Snap/container sandboxes, and fall back to the legacy socket-file path only when an older backend returns UNKNOWN_METHOD. Adds use_fd handling, print-thread tracking, and a wait function for active print threads.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+478</span><span class="del">−39</span><span class="file-count">6 files</span></span></div>
+                
+              </div>
+            </article></div>
+        </section>
+        <section class="timeline-month">
+          <div class="month-block"><span class="month-name">JUN</span><span class="month-year">2026</span><span class="month-phase">Concurrency</span></div>
+          <div class="month-events">
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Jun 6</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/66" target="_blank" rel="noopener" title="Add GMutex to serialize access to the dialogs/printer hash tables and Add NULL checks throughout">#66</a></div>
+                <h3>Dialog and printer state serialized</h3>
+                <p>Adds a GMutex to BackendObj to protect dialog and printer hash tables, plus NULL checks across D-Bus handlers, printer-state callbacks, remote/temporary printer listing, and printer-added signals.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+170</span><span class="del">−12</span><span class="file-count">3 files</span></span></div>
+                
+              </div>
+            </article></div>
+        </section>
+        <section class="timeline-month">
+          <div class="month-block"><span class="month-name">AUG</span><span class="month-year">2026</span><span class="month-phase">Capabilities &amp; quality</span></div>
+          <div class="month-events">
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Aug 7</time><span class="repo-badge backend">backend</span><span class="repo-badge libs">libs</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/67" target="_blank" rel="noopener" title="Add capability management functions and integrate with D-Bus interface">#67</a><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/95" target="_blank" rel="noopener" title=" Define structures and methods for all printer capabilities and  implement functions to create and delete printer capabilities">#95</a></div>
+                <h3>Capabilities API delivered end to end</h3>
+                <p>Developed from Jul 16, this adds capability structures, creation/deletion lifecycle functions, and GetAllCapabilities with locale and human-readable strings in both repositories. It also fixes boolean IPP extraction and moves CI to build cpdb-libs from git instead of a release tarball.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+1,169</span><span class="del">−9</span><span class="file-count">8 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Aug 22</time><span class="repo-badge libs">libs</span><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/100" target="_blank" rel="noopener" title="feat: translation-quality API + 3-way capability merge">#100</a></div>
+                <h3>Translation-quality API + 3-way merge</h3>
+                <p>Adds quality tags for exact locale, base-language, English fallback, and no-translation results; quality-aware translation getters; and a 3-way capability merge in cpdb-libs.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+514</span><span class="del">−218</span><span class="file-count">4 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Aug 23</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/74" target="_blank" rel="noopener" title="Fix translation leaks">#74</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/75" target="_blank" rel="noopener" title="Fix get_all_options leaks">#75</a></div>
+                <h3>Translation and option-path leaks removed</h3>
+                <p>Frees IPP responses and builders in translation calls and D-Bus handler strings, fixes 19 default_value overwrites and the option_names leak in get_all_options, switches malloc to calloc, repairs CUPS 3.x shims, and keeps the German locale test.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+172</span><span class="del">−50</span><span class="file-count">6 files</span></span></div>
+                
+              </div>
+            </article>
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Aug 24</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/76" target="_blank" rel="noopener" title="Fix unmatched cppcheck suppression">#76</a></div>
+                <h3>cppcheck suppression cleaned up</h3>
+                <p>Removes an unmatched nullPointerRedundantCheck suppression after verifying that cppcheck reports no such finding in the file.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+0</span><span class="del">−2</span><span class="file-count">1 file</span></span></div>
+                
+              </div>
+            </article></div>
+        </section>
+        <section class="timeline-month">
+          <div class="month-block"><span class="month-name">OCT</span><span class="month-year">2026</span><span class="month-phase">Portability</span></div>
+          <div class="month-events">
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Oct 11</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/77" target="_blank" rel="noopener" title="Fix #31: portable cupsd lookup with fallback in run-tests.sh">#77</a></div>
+                <h3>Portable cupsd discovery for the test suite</h3>
+                <p>Replaces hardcoded /usr/sbin/cupsd with find_cupsd(): CUPS_TEST_CUPSD, standard paths, PATH, then CUPS_SBINDIR. If the AppArmor-escape copy is unreadable, it runs the found cupsd in place. Fixes issue #31 and makes make check work on Arch usrmerge and restrictive-permission installs.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+82</span><span class="del">−12</span><span class="file-count">3 files</span></span></div>
+                
+              </div>
+            </article></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section" id="activity">
+      <div class="section-head">
+        <p class="kicker">The shape of the work</p>
+        <h2>Activity concentrated in two pushes</h2>
+        <p>March accounts for 13 merged PRs — the print-pipeline hardening run. August is the other peak, with six PRs across the capabilities, translation-quality, and leak-fix work.</p>
+      </div>
+      <div class="activity-grid">
+        <div class="panel chart-panel">
+          <div class="panel-head">
+            <div><h3>Merged PRs per month</h3><p>February–October 2026, by repository</p></div>
+            <div class="legend" aria-label="Legend"><span><i class="backend"></i>backend</span><span><i class="libs"></i>libs</span></div>
+          </div>
+          <div class="chart" role="img" aria-label="Bar chart of merged pull requests per month: March 13, April 2, June 1, August 6, October 1; other months zero.">
+            <div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Feb</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">13</span><div class="bar" style="height:100.0%"><span class="seg backend" style="flex:12" title="cpdb-backend-cups: 12"></span><span class="seg libs" style="flex:1" title="cpdb-libs: 1"></span></div></div><div class="chart-month">Mar</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">2</span><div class="bar" style="height:15.4%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span><span class="seg libs" style="flex:1" title="cpdb-libs: 1"></span></div></div><div class="chart-month">Apr</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">May</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">1</span><div class="bar" style="height:7.7%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span></div></div><div class="chart-month">Jun</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Jul</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">6</span><div class="bar" style="height:46.2%"><span class="seg backend" style="flex:4" title="cpdb-backend-cups: 4"></span><span class="seg libs" style="flex:2" title="cpdb-libs: 2"></span></div></div><div class="chart-month">Aug</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Sep</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">1</span><div class="bar" style="height:7.7%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span></div></div><div class="chart-month">Oct</div></div>
+          </div>
+          <div class="chart-foot"><span>Peak: March 2026 · 13 PRs</span><span>Total: 23 merged PRs</span></div>
+        </div>
+        <div class="panel repo-panel">
+          <div class="panel-head"><div><h3>Repository split</h3><p>Final merged state</p></div></div>
+          
+        <article class="repo-card">
+          <div class="repo-card-head">
+            <span class="repo-title"><span class="repo-dot backend"></span>cpdb-backend-cups</span>
+            <a class="repo-link" href="https://github.com/OpenPrinting/cpdb-backend-cups" target="_blank" rel="noopener">repository</a>
+          </div>
+          <div class="repo-big">19 <span>merged PRs</span></div>
+          <div class="repo-stats"><span class="diff compact"><span class="add">+1,984</span><span class="del">−251</span><span class="file-count">10 files</span></span></div>
+          <div class="repo-meter"><span class="backend" style="width:82.6%"></span></div>
+          <div class="repo-caption">19 of 23 merged PRs</div>
+        </article>
+        <article class="repo-card">
+          <div class="repo-card-head">
+            <span class="repo-title"><span class="repo-dot libs"></span>cpdb-libs</span>
+            <a class="repo-link" href="https://github.com/OpenPrinting/cpdb-libs" target="_blank" rel="noopener">repository</a>
+          </div>
+          <div class="repo-big">4 <span>merged PRs</span></div>
+          <div class="repo-stats"><span class="diff compact"><span class="add">+1,406</span><span class="del">−238</span><span class="file-count">7 files</span></span></div>
+          <div class="repo-meter"><span class="libs" style="width:17.4%"></span></div>
+          <div class="repo-caption">4 of 23 merged PRs</div>
+        </article>
+        </div>
+      </div>
+      <div class="panel churn-panel">
+        <div class="panel-head"><div><h3>Most-touched files</h3><p>Combined additions and deletions across merged commits</p></div></div>
+        <div class="churn-grid">
+          <div class="churn-row"><div class="churn-label">libs · cpdb/cpdb-frontend.c</div><div class="churn-track"><span class="libs" style="width:100.0%"></span></div><div class="churn-val">1,323</div></div><div class="churn-row"><div class="churn-label">backend · src/backend_helper.c</div><div class="churn-track"><span class="backend" style="width:77.9%"></span></div><div class="churn-val">1,031</div></div><div class="churn-row"><div class="churn-label">backend · src/print_backend_cups.c</div><div class="churn-track"><span class="backend" style="width:22.2%"></span></div><div class="churn-val">294</div></div><div class="churn-row"><div class="churn-label">backend · src/test-internal.h</div><div class="churn-track"><span class="backend" style="width:21.2%"></span></div><div class="churn-val">281</div></div><div class="churn-row"><div class="churn-label">backend · src/run-tests.sh</div><div class="churn-track"><span class="backend" style="width:14.1%"></span></div><div class="churn-val">187</div></div><div class="churn-row"><div class="churn-label">libs · cpdb/cpdb-frontend.h</div><div class="churn-track"><span class="libs" style="width:13.8%"></span></div><div class="churn-val">182</div></div><div class="churn-row"><div class="churn-label">backend · src/backend_helper.h</div><div class="churn-track"><span class="backend" style="width:8.4%"></span></div><div class="churn-val">111</div></div><div class="churn-row"><div class="churn-label">backend · src/test_extractHostFromURI.c</div><div class="churn-track"><span class="backend" style="width:7.3%"></span></div><div class="churn-val">97</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workstreams">
+      <div class="section-head">
+        <p class="kicker">Workstreams</p>
+        <h2>Seven threads of contribution</h2>
+        <p>The same work viewed by problem area rather than by date. PR counts and line totals are for merged PRs only.</p>
+      </div>
+      <div class="workstream-grid">
+        
+        <article class="workstream">
+          <div class="ws-top"><span class="ws-num">01</span><span class="ws-prs">4 PRs</span></div>
+          <h3>CI, tests &amp; tooling</h3>
+          <p>Created build/test and CodeQL pipelines for both repositories, added a reusable C test harness, enabled manual CI runs, and made cupsd discovery work across distro layouts.</p>
+          <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/45" target="_blank" rel="noopener" title="Added Build &amp; Test and Codeql workflows">#45</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/51" target="_blank" rel="noopener" title="Add workflow_dispatch trigger to Build and CodeQL workflows for manual trigger">#51</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/77" target="_blank" rel="noopener" title="Fix #31: portable cupsd lookup with fallback in run-tests.sh">#77</a><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/87" target="_blank" rel="noopener" title="Add GitHub Actions workflows for build, test, and CodeQL analysis">#87</a></div>
+          <div class="ws-foot"><span class="diff compact"><span class="add">+668</span><span class="del">−17</span><span class="file-count">13 files</span></span></div>
+        </article>
+        <article class="workstream">
+          <div class="ws-top"><span class="ws-num">02</span><span class="ws-prs">8 PRs</span></div>
+          <h3>Print pipeline correctness</h3>
+          <p>Fixed validation, buffer sizing, a submission deadlock, socket-path reporting, environment handling, D-Bus error text, authenticated CUPS policies, and CUPS HTTP state management.</p>
+          <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/48" target="_blank" rel="noopener" title="Add NULL input validation in extractHostFromURI ">#48</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/49" target="_blank" rel="noopener" title="Fix buffer size issues in print_socket()  ">#49</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/50" target="_blank" rel="noopener" title="Fix print job submission: resolve deadlock and socket communication issues">#50</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/53" target="_blank" rel="noopener" title="Fix socket path not returned to frontend on print job failure">#53</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/58" target="_blank" rel="noopener" title="Add error handling for missing HOME environment variable in print_socket and add cupsFreeOptions and g_free for failure return paths">#58</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/59" target="_blank" rel="noopener" title="Enhance print_socket error handling and update Dbus error return for frontend error display">#59</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/61" target="_blank" rel="noopener" title="Fix auth failure when printing to authenticated CUPS policy">#61</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/64" target="_blank" rel="noopener" title="Stop manually managing http_t, use CUPS_HTTP_DEFAULT everywhere">#64</a></div>
+          <div class="ws-foot"><span class="diff compact"><span class="add">+198</span><span class="del">−121</span><span class="file-count">19 files</span></span></div>
+        </article>
+        <article class="workstream">
+          <div class="ws-top"><span class="ws-num">03</span><span class="ws-prs">2 PRs</span></div>
+          <h3>Observability</h3>
+          <p>Replaced ad-hoc printf and perror diagnostics with GLib logwarn() calls so failures are consistently captured by the backend logging stack.</p>
+          <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/52" target="_blank" rel="noopener" title="Improve logging by changing printf to logwarn">#52</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/55" target="_blank" rel="noopener" title="Improve logging by replacing perror with logwarn">#55</a></div>
+          <div class="ws-foot"><span class="diff compact"><span class="add">+21</span><span class="del">−21</span><span class="file-count">2 files</span></span></div>
+        </article>
+        <article class="workstream">
+          <div class="ws-top"><span class="ws-num">04</span><span class="ws-prs">2 PRs</span></div>
+          <h3>Container-ready FD passing</h3>
+          <p>Introduced printFd-first submission with a legacy printSocket fallback, enabling printing across Snap and container sandbox boundaries without a shared socket file.</p>
+          <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/65" target="_blank" rel="noopener" title="Adding containerized environment support socket path communication with frontend">#65</a><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/93" target="_blank" rel="noopener" title="Adding containerized environment support for socket path communication with backend ">#93</a></div>
+          <div class="ws-foot"><span class="diff compact"><span class="add">+478</span><span class="del">−39</span><span class="file-count">6 files</span></span></div>
+        </article>
+        <article class="workstream">
+          <div class="ws-top"><span class="ws-num">05</span><span class="ws-prs">1 PR</span></div>
+          <h3>Thread safety</h3>
+          <p>Serialized dialog and printer hash-table access with a GMutex and added NULL guards across callbacks and D-Bus handlers.</p>
+          <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/66" target="_blank" rel="noopener" title="Add GMutex to serialize access to the dialogs/printer hash tables and Add NULL checks throughout">#66</a></div>
+          <div class="ws-foot"><span class="diff compact"><span class="add">+170</span><span class="del">−12</span><span class="file-count">3 files</span></span></div>
+        </article>
+        <article class="workstream">
+          <div class="ws-top"><span class="ws-num">06</span><span class="ws-prs">3 PRs</span></div>
+          <h3>Capabilities &amp; i18n</h3>
+          <p>Built the GetAllCapabilities data model and lifecycle, human-readable and localized fields, English fallback, translation-quality tags, and a 3-way capability merge.</p>
+          <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/67" target="_blank" rel="noopener" title="Add capability management functions and integrate with D-Bus interface">#67</a><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/95" target="_blank" rel="noopener" title=" Define structures and methods for all printer capabilities and  implement functions to create and delete printer capabilities">#95</a><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/100" target="_blank" rel="noopener" title="feat: translation-quality API + 3-way capability merge">#100</a></div>
+          <div class="ws-foot"><span class="diff compact"><span class="add">+1,683</span><span class="del">−227</span><span class="file-count">12 files</span></span></div>
+        </article>
+        <article class="workstream">
+          <div class="ws-top"><span class="ws-num">07</span><span class="ws-prs">3 PRs</span></div>
+          <h3>Memory &amp; static analysis</h3>
+          <p>Removed leaks in translation and option paths, repaired CUPS 3.x compatibility shims, and cleaned up a cppcheck suppression after verification.</p>
+          <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/74" target="_blank" rel="noopener" title="Fix translation leaks">#74</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/75" target="_blank" rel="noopener" title="Fix get_all_options leaks">#75</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/76" target="_blank" rel="noopener" title="Fix unmatched cppcheck suppression">#76</a></div>
+          <div class="ws-foot"><span class="diff compact"><span class="add">+172</span><span class="del">−52</span><span class="file-count">7 files</span></span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="ledger">
+      <div class="section-head">
+        <p class="kicker">Pull request ledger</p>
+        <h2>Every pull request</h2>
+        <p>All 24 PRs are listed: 23 merged, plus #54, which was closed in favour of #55. Changed-file counts from GitHub may overlap between PRs; the headline uses unique paths from merged commits.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <caption>Merged pull requests in chronological order, followed by the one closed without merge.</caption>
+          <thead><tr><th scope="col">Merged</th><th scope="col">Repo</th><th scope="col">PR</th><th scope="col">Work</th><th scope="col">Theme</th><th scope="col">Diff</th><th scope="col">Files</th></tr></thead>
+          <tbody>
+        <tr>
+          <td class="date-cell">Mar 2, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/45" target="_blank" rel="noopener" title="Added Build &amp; Test and Codeql workflows">#45</a></td>
+          <td class="title-cell"><span class="ledger-title">Build, test &amp; CodeQL workflows</span><span class="ledger-full">Added Build &amp; Test and Codeql workflows</span></td>
+          <td><span class="theme-tag">CI, tests &amp; tooling</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+497</span><span class="del">−2</span></span></td>
+          <td class="num-plain">6</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 3, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/48" target="_blank" rel="noopener" title="Add NULL input validation in extractHostFromURI ">#48</a></td>
+          <td class="title-cell"><span class="ledger-title">NULL validation in extractHostFromURI</span><span class="ledger-full">Add NULL input validation in extractHostFromURI </span></td>
+          <td><span class="theme-tag">Print pipeline</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+6</span><span class="del">−2</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 4, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/49" target="_blank" rel="noopener" title="Fix buffer size issues in print_socket()  ">#49</a></td>
+          <td class="title-cell"><span class="ledger-title">print_socket buffer-size fixes</span><span class="ledger-full">Fix buffer size issues in print_socket()  </span></td>
+          <td><span class="theme-tag">Print pipeline</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+8</span><span class="del">−5</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 4, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/50" target="_blank" rel="noopener" title="Fix print job submission: resolve deadlock and socket communication issues">#50</a></td>
+          <td class="title-cell"><span class="ledger-title">Print-submission deadlock fix</span><span class="ledger-full">Fix print job submission: resolve deadlock and socket communication issues</span></td>
+          <td><span class="theme-tag">Print pipeline</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+14</span><span class="del">−16</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 8, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/51" target="_blank" rel="noopener" title="Add workflow_dispatch trigger to Build and CodeQL workflows for manual trigger">#51</a></td>
+          <td class="title-cell"><span class="ledger-title">Manual workflow_dispatch triggers</span><span class="ledger-full">Add workflow_dispatch trigger to Build and CodeQL workflows for manual trigger</span></td>
+          <td><span class="theme-tag">CI, tests &amp; tooling</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+5</span><span class="del">−3</span></span></td>
+          <td class="num-plain">2</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 8, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/52" target="_blank" rel="noopener" title="Improve logging by changing printf to logwarn">#52</a></td>
+          <td class="title-cell"><span class="ledger-title">printf → logwarn logging</span><span class="ledger-full">Improve logging by changing printf to logwarn</span></td>
+          <td><span class="theme-tag">Observability</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+13</span><span class="del">−13</span></span></td>
+          <td class="num-plain">1</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 8, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/53" target="_blank" rel="noopener" title="Fix socket path not returned to frontend on print job failure">#53</a></td>
+          <td class="title-cell"><span class="ledger-title">Socket path returned on failure</span><span class="ledger-full">Fix socket path not returned to frontend on print job failure</span></td>
+          <td><span class="theme-tag">Print pipeline</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+27</span><span class="del">−13</span></span></td>
+          <td class="num-plain">2</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 9, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/55" target="_blank" rel="noopener" title="Improve logging by replacing perror with logwarn">#55</a></td>
+          <td class="title-cell"><span class="ledger-title">perror → logwarn</span><span class="ledger-full">Improve logging by replacing perror with logwarn</span></td>
+          <td><span class="theme-tag">Observability</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+8</span><span class="del">−8</span></span></td>
+          <td class="num-plain">1</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 17, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/58" target="_blank" rel="noopener" title="Add error handling for missing HOME environment variable in print_socket and add cupsFreeOptions and g_free for failure return paths">#58</a></td>
+          <td class="title-cell"><span class="ledger-title">HOME handling + failure cleanup</span><span class="ledger-full">Add error handling for missing HOME environment variable in print_socket and add cupsFreeOptions and g_free for failure return paths</span></td>
+          <td><span class="theme-tag">Print pipeline</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+11</span><span class="del">−1</span></span></td>
+          <td class="num-plain">1</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 18, 2026</td>
+          <td><span class="repo-badge libs">libs</span></td>
+          <td><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/87" target="_blank" rel="noopener" title="Add GitHub Actions workflows for build, test, and CodeQL analysis">#87</a></td>
+          <td class="title-cell"><span class="ledger-title">Build/test + CodeQL for libs</span><span class="ledger-full">Add GitHub Actions workflows for build, test, and CodeQL analysis</span></td>
+          <td><span class="theme-tag">CI, tests &amp; tooling</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+84</span><span class="del">−0</span></span></td>
+          <td class="num-plain">2</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 19, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/59" target="_blank" rel="noopener" title="Enhance print_socket error handling and update Dbus error return for frontend error display">#59</a></td>
+          <td class="title-cell"><span class="ledger-title">CUPS errors surfaced over D-Bus</span><span class="ledger-full">Enhance print_socket error handling and update Dbus error return for frontend error display</span></td>
+          <td><span class="theme-tag">Print pipeline</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+11</span><span class="del">−7</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 23, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/61" target="_blank" rel="noopener" title="Fix auth failure when printing to authenticated CUPS policy">#61</a></td>
+          <td class="title-cell"><span class="ledger-title">Authenticated CUPS policy fix</span><span class="ledger-full">Fix auth failure when printing to authenticated CUPS policy</span></td>
+          <td><span class="theme-tag">Print pipeline</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+83</span><span class="del">−36</span></span></td>
+          <td class="num-plain">2</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 26, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/64" target="_blank" rel="noopener" title="Stop manually managing http_t, use CUPS_HTTP_DEFAULT everywhere">#64</a></td>
+          <td class="title-cell"><span class="ledger-title">CUPS_HTTP_DEFAULT everywhere</span><span class="ledger-full">Stop manually managing http_t, use CUPS_HTTP_DEFAULT everywhere</span></td>
+          <td><span class="theme-tag">Print pipeline</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+38</span><span class="del">−41</span></span></td>
+          <td class="num-plain">2</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Apr 27, 2026</td>
+          <td><span class="repo-badge libs">libs</span></td>
+          <td><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/93" target="_blank" rel="noopener" title="Adding containerized environment support for socket path communication with backend ">#93</a></td>
+          <td class="title-cell"><span class="ledger-title">FD-passing support in libs</span><span class="ledger-full">Adding containerized environment support for socket path communication with backend </span></td>
+          <td><span class="theme-tag">Container FD passing</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+167</span><span class="del">−18</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Apr 27, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/65" target="_blank" rel="noopener" title="Adding containerized environment support socket path communication with frontend">#65</a></td>
+          <td class="title-cell"><span class="ledger-title">Container-ready print FD passing</span><span class="ledger-full">Adding containerized environment support socket path communication with frontend</span></td>
+          <td><span class="theme-tag">Container FD passing</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+311</span><span class="del">−21</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Jun 6, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/66" target="_blank" rel="noopener" title="Add GMutex to serialize access to the dialogs/printer hash tables and Add NULL checks throughout">#66</a></td>
+          <td class="title-cell"><span class="ledger-title">GMutex + NULL checks</span><span class="ledger-full">Add GMutex to serialize access to the dialogs/printer hash tables and Add NULL checks throughout</span></td>
+          <td><span class="theme-tag">Thread safety</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+170</span><span class="del">−12</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 7, 2026</td>
+          <td><span class="repo-badge libs">libs</span></td>
+          <td><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/95" target="_blank" rel="noopener" title=" Define structures and methods for all printer capabilities and  implement functions to create and delete printer capabilities">#95</a></td>
+          <td class="title-cell"><span class="ledger-title">Capabilities structures + lifecycle</span><span class="ledger-full"> Define structures and methods for all printer capabilities and  implement functions to create and delete printer capabilities</span></td>
+          <td><span class="theme-tag">Capabilities &amp; i18n</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+641</span><span class="del">−2</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 7, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/67" target="_blank" rel="noopener" title="Add capability management functions and integrate with D-Bus interface">#67</a></td>
+          <td class="title-cell"><span class="ledger-title">Capabilities backend + D-Bus</span><span class="ledger-full">Add capability management functions and integrate with D-Bus interface</span></td>
+          <td><span class="theme-tag">Capabilities &amp; i18n</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+528</span><span class="del">−7</span></span></td>
+          <td class="num-plain">5</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 22, 2026</td>
+          <td><span class="repo-badge libs">libs</span></td>
+          <td><a class="pr-link libs" href="https://github.com/OpenPrinting/cpdb-libs/pull/100" target="_blank" rel="noopener" title="feat: translation-quality API + 3-way capability merge">#100</a></td>
+          <td class="title-cell"><span class="ledger-title">Translation-quality API + 3-way merge</span><span class="ledger-full">feat: translation-quality API + 3-way capability merge</span></td>
+          <td><span class="theme-tag">Capabilities &amp; i18n</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+514</span><span class="del">−218</span></span></td>
+          <td class="num-plain">4</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 23, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/74" target="_blank" rel="noopener" title="Fix translation leaks">#74</a></td>
+          <td class="title-cell"><span class="ledger-title">Translation-path leak fixes</span><span class="ledger-full">Fix translation leaks</span></td>
+          <td><span class="theme-tag">Memory &amp; static analysis</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+123</span><span class="del">−25</span></span></td>
+          <td class="num-plain">4</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 23, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/75" target="_blank" rel="noopener" title="Fix get_all_options leaks">#75</a></td>
+          <td class="title-cell"><span class="ledger-title">get_all_options leak fixes</span><span class="ledger-full">Fix get_all_options leaks</span></td>
+          <td><span class="theme-tag">Memory &amp; static analysis</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+49</span><span class="del">−25</span></span></td>
+          <td class="num-plain">2</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 24, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/76" target="_blank" rel="noopener" title="Fix unmatched cppcheck suppression">#76</a></td>
+          <td class="title-cell"><span class="ledger-title">cppcheck suppression cleanup</span><span class="ledger-full">Fix unmatched cppcheck suppression</span></td>
+          <td><span class="theme-tag">Memory &amp; static analysis</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+0</span><span class="del">−2</span></span></td>
+          <td class="num-plain">1</td>
+        </tr>
+        <tr>
+          <td class="date-cell">Oct 11, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/77" target="_blank" rel="noopener" title="Fix #31: portable cupsd lookup with fallback in run-tests.sh">#77</a></td>
+          <td class="title-cell"><span class="ledger-title">Portable cupsd lookup for tests</span><span class="ledger-full">Fix #31: portable cupsd lookup with fallback in run-tests.sh</span></td>
+          <td><span class="theme-tag">CI, tests &amp; tooling</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+82</span><span class="del">−12</span></span></td>
+          <td class="num-plain">3</td>
+        </tr>
+        <tr class="closed-row">
+          <td class="date-cell">—</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/54" target="_blank" rel="noopener" title="Replaced perror with logwarn">#54</a></td>
+          <td class="title-cell"><span class="ledger-title">perror → logwarn (superseded)</span><span class="ledger-full">Replaced perror with logwarn</span></td>
+          <td><span class="theme-tag closed">Closed without merge</span></td>
+          <td class="num-cell"><span class="muted-cell">superseded by #55</span></td>
+          <td class="num-plain">—</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="appendix">
+      <div class="section-head">
+        <p class="kicker">Appendix</p>
+        <h2>Commit ledger and method</h2>
+        <p>The merged commit records, the development branches behind them, and the data rules used for this report.</p>
+      </div>
+      <div class="appendix-grid">
+        <details>
+          <summary>Merged commits on upstream master <span>24 commits</span></summary>
+          <div class="details-body">
+            <div class="table-wrap">
+              <table>
+                <caption>Git history from OpenPrinting/cpdb-backend-cups and OpenPrinting/cpdb-libs, filtered to Souptik De's author email.</caption>
+                <thead><tr><th scope="col">Date</th><th scope="col">Repo</th><th scope="col">Commit</th><th scope="col">Subject</th><th scope="col">Diff</th></tr></thead>
+                <tbody>
+        <tr>
+          <td class="date-cell">Oct 11, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/b3d2aee1d14f2c04d57f8e181cbdf289b134c4df" target="_blank" rel="noopener"><code>b3d2aee1</code></a></td>
+          <td class="commit-subject">build: export CUPS_SBINDIR to tests via TESTS_ENVIRONMENT</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+4</span><span class="del">−0</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Oct 11, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/b9a036d265c5b6ba366d0e0c4eee80e06985d27f" target="_blank" rel="noopener"><code>b9a036d2</code></a></td>
+          <td class="commit-subject">fix: portable cupsd lookup with fallback in run-tests.sh (#31)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+78</span><span class="del">−10</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 24, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/51ea44ea25e6bb4365a39528376714bea6987a29" target="_blank" rel="noopener"><code>51ea44ea</code></a></td>
+          <td class="commit-subject">fix: remove unmatched cppcheck suppression in test_extractHostFromURI.c (#76)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+0</span><span class="del">−2</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 24, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/69e1bd02f19f18a58c0ac1edde2e24c216d0f754" target="_blank" rel="noopener"><code>69e1bd02</code></a></td>
+          <td class="commit-subject">fix: get_all_options memory leaks (#75)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+33</span><span class="del">−0</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 24, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/b32165a62b70fd9091dfdd30d3e85485a6f63aea" target="_blank" rel="noopener"><code>b32165a6</code></a></td>
+          <td class="commit-subject">fix: translation-path memory leaks (#74)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+123</span><span class="del">−25</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 23, 2026</td>
+          <td><span class="repo-badge libs">libs</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-libs/commit/a39b622680f634df81a2344bf34ec0570cc3e482" target="_blank" rel="noopener"><code>a39b6226</code></a></td>
+          <td class="commit-subject">feat: translation-quality API + 3-way capability merge (#100)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+514</span><span class="del">−218</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 8, 2026</td>
+          <td><span class="repo-badge libs">libs</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-libs/commit/6a40f2aee87ddd951061d7b92f26be06dcaf4166" target="_blank" rel="noopener"><code>6a40f2ae</code></a></td>
+          <td class="commit-subject">Define structures and methods for all printer capabilities and implement functions to create and delete printer capabilities (#95)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+641</span><span class="del">−2</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Aug 8, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/1062a2d0b0f5fe1d086bf9750e9abf754d17f628" target="_blank" rel="noopener"><code>1062a2d0</code></a></td>
+          <td class="commit-subject">Add capability management functions and integrate with D-Bus interface (#67)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+528</span><span class="del">−7</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Jun 6, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/bb1f1baf879e06a97bbf80640125a421fabbed5b" target="_blank" rel="noopener"><code>bb1f1baf</code></a></td>
+          <td class="commit-subject">Add GMutex to serialize access to the dialogs/printer hash tables and Add NULL checks throughout (#66)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+170</span><span class="del">−12</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Apr 27, 2026</td>
+          <td><span class="repo-badge libs">libs</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-libs/commit/8a94980710b41cfd62e8e3b4aaa0259bfeb01df9" target="_blank" rel="noopener"><code>8a949807</code></a></td>
+          <td class="commit-subject">Adding containerized environment support for socket path communication with backend (#93)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+167</span><span class="del">−18</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Apr 27, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/1b0126b7fa6020fd95c6899934b677231d829424" target="_blank" rel="noopener"><code>1b0126b7</code></a></td>
+          <td class="commit-subject">Adding containerized environment support socket path communication with frontend (#65)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+311</span><span class="del">−21</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 26, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/56a1596139903f0faf9fbbcafcd5a6da68fafbc2" target="_blank" rel="noopener"><code>56a15961</code></a></td>
+          <td class="commit-subject">Stop manually managing http_t, use CUPS_HTTP_DEFAULT everywhere (#64)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+38</span><span class="del">−41</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 23, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/9a224c9c5e2160c7199559019f2cde5ba5ec3b0f" target="_blank" rel="noopener"><code>9a224c9c</code></a></td>
+          <td class="commit-subject">Fix auth failure when printing to authenticated CUPS policy (#61)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+83</span><span class="del">−36</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 19, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/4dc22b869ea16b7b55040a38b10d9471822b124c" target="_blank" rel="noopener"><code>4dc22b86</code></a></td>
+          <td class="commit-subject">Enhance print_socket error handling and update D-Bus error return for frontend error display (#59)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+11</span><span class="del">−7</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 18, 2026</td>
+          <td><span class="repo-badge libs">libs</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-libs/commit/f27fc8a1b1af0d34417e4e50de90d4444b6090a8" target="_blank" rel="noopener"><code>f27fc8a1</code></a></td>
+          <td class="commit-subject">Add GitHub Actions workflows for build, test, and CodeQL analysis (#87)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+84</span><span class="del">−0</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 18, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/8b727c7128395fb8b2225d573c38d9c00c190855" target="_blank" rel="noopener"><code>8b727c71</code></a></td>
+          <td class="commit-subject">Add error handling for missing HOME environment variable in print_socket and add cupsFreeOptions and g_free for failure return paths (#58)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+11</span><span class="del">−1</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 9, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/da932edf6b6ad0418658f17b7f484e302563b757" target="_blank" rel="noopener"><code>da932edf</code></a></td>
+          <td class="commit-subject">Improve logging by replacing perror() with logwarn() (#55)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+8</span><span class="del">−8</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 9, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/23fcca7546f827a288f95d160f1799e9777355b5" target="_blank" rel="noopener"><code>23fcca75</code></a></td>
+          <td class="commit-subject">Fix socket path not returned to frontend on print job failure (#53)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+14</span><span class="del">−0</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 9, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/a0b85078f40284427dc07799a1af1ef2dc2ce34d" target="_blank" rel="noopener"><code>a0b85078</code></a></td>
+          <td class="commit-subject">Improve logging by changing printf to logwarn (#52)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+13</span><span class="del">−13</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 9, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/77ba955ba64511aaf170a2b1029b453aac6f9146" target="_blank" rel="noopener"><code>77ba955b</code></a></td>
+          <td class="commit-subject">Add workflow_dispatch trigger to Build and CodeQL workflows for manual trigger (#51)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+5</span><span class="del">−3</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 4, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/98dd684e09856550c9c5b4e3cc2febc5e72ddfd7" target="_blank" rel="noopener"><code>98dd684e</code></a></td>
+          <td class="commit-subject">Fix print job submission: resolve deadlock and socket communication issues (#50)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+6</span><span class="del">−11</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 4, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/065cf3c736c4ea8d6803f8cd51f3460a6f64195f" target="_blank" rel="noopener"><code>065cf3c7</code></a></td>
+          <td class="commit-subject">Fix buffer size issues in print_socket() (#49)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+8</span><span class="del">−5</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 3, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/7d661c02c0bbc441bc1d6b8db1c209d9535f2264" target="_blank" rel="noopener"><code>7d661c02</code></a></td>
+          <td class="commit-subject">Add NULL input validation in extractHostFromURI (#48)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+6</span><span class="del">−2</span></span></td>
+        </tr>
+        <tr>
+          <td class="date-cell">Mar 3, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/df974b27cddaf36d648cab30a1f851a340bd41cf" target="_blank" rel="noopener"><code>df974b27</code></a></td>
+          <td class="commit-subject">Added Build &amp; Test and Codeql workflows (#45)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+497</span><span class="del">−2</span></span></td>
+        </tr></tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+
+        <div class="method">
+          <article class="method-card">
+            <h3>Development branches</h3>
+            <p>Work was developed on topic branches and squash-merged. The branch history also contains pre-squash iterations, verification logs, cppcheck runs, and CUPS 3.x compatibility shims. Key branch families:</p>
+            <div class="branch-list">
+              <code>fix-cupsd-lookup-fallback</code>
+              <code>fix-remove-unmatched-suppression</code>
+              <code>task-b-general-leak-fixes</code>
+              <code>task-b-general-leak-fixes-v2</code>
+              <code>task-b-translation-leak-fixes</code>
+              <code>task-b-translation-leak-fixes-v2</code>
+              <code>task-b-translation-verification</code>
+              <code>task-a-translation-quality</code>
+              <code>task-a-translation-quality-v2</code>
+            </div>
+          </article>
+          <article class="method-card">
+            <h3>Method & scope</h3>
+            <ul>
+              <li>Aggregated the identities <strong>Souptik De</strong> and <strong>Souptik-De</strong> under the shared email <code>souptikde2005@gmail.com</code>.</li>
+              <li>Scope: <a href="https://github.com/OpenPrinting/cpdb-backend-cups" target="_blank" rel="noopener">OpenPrinting/cpdb-backend-cups</a> and <a href="https://github.com/OpenPrinting/cpdb-libs" target="_blank" rel="noopener">OpenPrinting/cpdb-libs</a>. The workspace libcups checkout was also checked; it contains no Souptik De commits.</li>
+              <li>PR status, dates, review/merge actor, and per-PR line/file counts come from GitHub PR metadata captured on Oct 24, 2026. All 23 merged PRs were merged by Till Kamppeter.</li>
+              <li>Merged-commit and unique-file counts come from <code>upstream/master</code> after fetching on Oct 24, 2026. Line totals in the headline and tables are per-PR sums; commit-level totals differ slightly because of squash/rebase history (+3,353 / −444).</li>
+              <li>PR #54 is shown for completeness but excluded from all merged totals. Merge commits are excluded from line counts.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <p class="footnote">Report generated from local git repositories under <code>/home/neo/openprinting</code> and GitHub PR metadata. Dates use UTC merge timestamps; timeline labels use the month in which the PR merged.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">Souptik De · CPDB Stack Contribution Report <span>· OpenPrinting</span></div>
+    <div class="footer-meta">February 10 – October 11, 2026 · Prepared October 24, 2026</div>
+  </div>
+</footer>
+</body>
+</html>
