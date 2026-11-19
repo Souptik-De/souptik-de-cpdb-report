@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A timeline report of Souptik De's contributions to the OpenPrinting CPDB stack, February to October 2026.">
+<meta name="description" content="A timeline report of Souptik De's contributions to the OpenPrinting CPDB stack, February to November 2026.">
 <title>Souptik De — CPDB Stack Contribution Report</title>
 <style>
 :root {
@@ -383,17 +383,17 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
         </span>
         <span>OpenPrinting<span class="brand-sub">CPDB stack · contribution report</span></span>
       </div>
-      <div class="report-stamp">Prepared Oct 24, 2026</div>
+      <div class="report-stamp">Prepared Nov 19, 2026</div>
     </div>
 
     <div class="hero-grid">
       <div>
         <div class="eyebrow"><span class="pulse"></span> Common Print Dialog Backends</div>
         <h1>Souptik De<span>.</span></h1>
-        <p class="lede">A timeline of work across the CPDB stack — from CI foundations and print-pipeline correctness to container-ready FD passing, thread safety, and the capabilities and translation-quality APIs.</p>
+        <p class="lede">A timeline of work across the CPDB stack — from CI foundations and print-pipeline correctness to container-ready FD passing, thread safety, the capabilities and translation-quality APIs, and vendor PPD options for driver-based queues.</p>
         <div class="hero-meta">
-          <span class="meta-pill"><b>Feb 10 – Oct 11, 2026</b> · 9 months</span>
-          <span class="meta-pill"><b>23</b> merged PRs</span>
+          <span class="meta-pill"><b>Feb 10 – Nov 16, 2026</b> · 9 months</span>
+          <span class="meta-pill"><b>24</b> merged PRs</span>
           <span class="meta-pill"><b>2</b> repositories</span>
           <span class="meta-pill"><b>All</b> merges by Till Kamppeter</span>
         </div>
@@ -406,8 +406,9 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
           <div class="signature-row"><span class="sig-num">02</span><span>Enabled print FD passing across Snap and container sandboxes</span></div>
           <div class="signature-row"><span class="sig-num">03</span><span>Delivered GetAllCapabilities with locale and translation quality</span></div>
           <div class="signature-row"><span class="sig-num">04</span><span>Established build, test and CodeQL pipelines in both repositories</span></div>
+          <div class="signature-row"><span class="sig-num">05</span><span>Exposed vendor PPD options for CUPS 2.x driver-based queues</span></div>
         </div>
-        <div class="hero-card-foot"><span>Merged pull requests</span><b>23</b></div>
+        <div class="hero-card-foot"><span>Merged pull requests</span><b>24</b></div>
       </aside>
     </div>
   </div>
@@ -422,36 +423,37 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
     <a href="#ledger">PR ledger</a>
     <a href="#appendix">Appendix</a>
     <span class="nav-spacer"></span>
-    <span class="nav-date">Report · Oct 2026</span>
+    <span class="nav-date">Report · Nov 2026</span>
   </div>
 </nav>
 
 <main id="main">
   <div class="wrap">
     <section class="stats" aria-label="Contribution summary">
-      <div class="stat accent"><div class="stat-label">Merged PRs</div><div class="stat-value">23</div><div class="stat-sub">of 24 opened</div></div>
-      <div class="stat"><div class="stat-label">Merged commits</div><div class="stat-value">24</div><div class="stat-sub">on upstream master</div></div>
+      <div class="stat accent"><div class="stat-label">Merged PRs</div><div class="stat-value">24</div><div class="stat-sub">of 25 opened</div></div>
+      <div class="stat"><div class="stat-label">Merged commits</div><div class="stat-value">25</div><div class="stat-sub">on upstream master</div></div>
       <div class="stat"><div class="stat-label">Files touched</div><div class="stat-value">17</div><div class="stat-sub">unique paths</div></div>
-      <div class="stat add"><div class="stat-label">Lines added</div><div class="stat-value">+3,390</div><div class="stat-sub">across merged PRs</div></div>
-      <div class="stat del"><div class="stat-label">Lines removed</div><div class="stat-value">−489</div><div class="stat-sub">across merged PRs</div></div>
-      <div class="stat"><div class="stat-label">Active span</div><div class="stat-value">9 <span class="unit">mo</span></div><div class="stat-sub">Feb – Oct 2026</div></div>
+      <div class="stat add"><div class="stat-label">Lines added</div><div class="stat-value">+4,885</div><div class="stat-sub">across merged PRs</div></div>
+      <div class="stat del"><div class="stat-label">Lines removed</div><div class="stat-value">−501</div><div class="stat-sub">across merged PRs</div></div>
+      <div class="stat"><div class="stat-label">Active span</div><div class="stat-value">9 <span class="unit">mo</span></div><div class="stat-sub">Feb – Nov 2026</div></div>
     </section>
 
     <section class="section" id="overview">
       <div class="section-head">
         <p class="kicker">Overview</p>
-        <h2>From broken print jobs to a shipping capabilities API</h2>
-        <p>The work follows a clear arc: make the projects testable, fix the print path, make it portable across sandboxes, then extend the API and harden memory safety.</p>
+        <h2>From broken print jobs to a complete options model</h2>
+        <p>The work follows a clear arc: make the projects testable, fix the print path, make it portable across sandboxes, then extend the API, harden memory safety, and cover driver-based queues.</p>
       </div>
       <div class="overview-grid">
         <div class="prose">
-          <p>Between <strong>February 10</strong> and <strong>October 11, 2026</strong>, Souptik De authored <strong>24 merged commits through 23 pull requests</strong> across <strong>cpdb-backend-cups</strong> and <strong>cpdb-libs</strong>. A 24th PR, #54, was closed without merge and superseded by #55.</p>
+          <p>Between <strong>February 10</strong> and <strong>November 16, 2026</strong>, Souptik De authored <strong>25 merged commits through 24 pull requests</strong> across <strong>cpdb-backend-cups</strong> and <strong>cpdb-libs</strong>. A 25th PR, #54, was closed without merge and superseded by #55.</p>
           <p>The first phase builds the safety net: GitHub Actions build/test and CodeQL workflows in both repositories, a C test harness, and unit coverage for URI parsing. The second phase repairs print submission itself — stack-corrupting buffer sizes, an <code>accept()</code> deadlock, uninitialised socket paths, missing environment handling, opaque D-Bus errors, and a 401 failure under authenticated CUPS policies.</p>
           <p>The largest architectural change is <strong>print FD passing</strong>: the frontend now tries <code>printFd</code> first, which works across Snap/container boundaries, and falls back to the legacy socket path only for older backends. Later work adds a <code>GMutex</code> around printer/dialog state, delivers the <strong>GetAllCapabilities</strong> model, and introduces <strong>translation-quality</strong> tags with a 3-way capability merge.</p>
-          <p>The final phase is about quality: translation-path and option-path leak fixes, CUPS 3.x shim repairs, a cppcheck cleanup, and a portable <code>find_cupsd()</code> helper that lets <code>make check</code> pass on Arch usrmerge and restrictive-permission installs.</p>
+          <p>The late-summer phase is about quality: translation-path and option-path leak fixes, CUPS 3.x shim repairs, a cppcheck cleanup, and a portable <code>find_cupsd()</code> helper that lets <code>make check</code> pass on Arch usrmerge and restrictive-permission installs.</p>
+          <p>The newest phase, merged in November, extends the option model to CUPS 2.x driver-based queues. Vendor PPD keywords are fetched over IPP, localized by libcups, merged with their IPP equivalents where both describe the same concept, and sent in both forms at job time — so settings that never surfaced as IPP attributes finally reach the print dialog.</p>
         </div>
         <aside class="phase-panel" aria-label="Contribution phases">
-          <h3>Six phases</h3>
+          <h3>Seven phases</h3>
           <div class="phase-list">
             <div class="phase-item"><span class="phase-num">01</span><span class="phase-name">CI & test foundations</span><span class="phase-date">Feb–Mar</span></div>
             <div class="phase-item"><span class="phase-num">02</span><span class="phase-name">Print pipeline hardening</span><span class="phase-date">Mar</span></div>
@@ -459,6 +461,7 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
             <div class="phase-item"><span class="phase-num">04</span><span class="phase-name">Thread safety</span><span class="phase-date">Jun</span></div>
             <div class="phase-item"><span class="phase-num">05</span><span class="phase-name">Capabilities & i18n</span><span class="phase-date">Aug</span></div>
             <div class="phase-item"><span class="phase-num">06</span><span class="phase-name">Portability & cleanup</span><span class="phase-date">Aug–Oct</span></div>
+            <div class="phase-item"><span class="phase-num">07</span><span class="phase-name">PPD option parity</span><span class="phase-date">Nov</span></div>
           </div>
         </aside>
       </div>
@@ -696,6 +699,20 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
               </div>
             </article></div>
         </section>
+        <section class="timeline-month">
+          <div class="month-block"><span class="month-name">NOV</span><span class="month-year">2026</span><span class="month-phase">Driver PPD options</span></div>
+          <div class="month-events">
+            <article class="timeline-event">
+              <div class="event-dot"></div>
+              <div class="event-card">
+                <div class="event-meta"><time>Nov 16</time><span class="repo-badge backend">backend</span><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/81" target="_blank" rel="noopener" title="fix #63: expose vendor PPD options on CUPS 2.x driver-based queues">#81</a></div>
+                <h3>Vendor PPD options reach driver-based queues</h3>
+                <p>Fetches the queue PPD over IPP with cupsGetPPD2(), localizes it with ppdOpenFile() and ppdLocalize(), and merges vendor keywords that duplicate IPP attributes (ColorModel, Duplex, Resolution, InputSlot, MediaType, OutputBin, cupsPrintQuality). PPD-only options keep their keyword, while job submission sends both forms so the driver receives the user's choice. Adds integration coverage plus unit tests for the mapping and dual-form submission, and fixes issue #63, where the GTK4 print dialog did not load a driver queue's filter settings.</p>
+                <div class="event-foot"><span class="diff compact"><span class="add">+1,495</span><span class="del">−12</span><span class="file-count">7 files</span></span></div>
+                
+              </div>
+            </article></div>
+        </section>
       </div>
     </section>
 
@@ -703,18 +720,18 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
       <div class="section-head">
         <p class="kicker">The shape of the work</p>
         <h2>Activity concentrated in two pushes</h2>
-        <p>March accounts for 13 merged PRs — the print-pipeline hardening run. August is the other peak, with six PRs across the capabilities, translation-quality, and leak-fix work.</p>
+        <p>March accounts for 13 merged PRs — the print-pipeline hardening run. August is the other peak, with six PRs across the capabilities, translation-quality, and leak-fix work. November adds a single large PR that brings driver queues into the option model.</p>
       </div>
       <div class="activity-grid">
         <div class="panel chart-panel">
           <div class="panel-head">
-            <div><h3>Merged PRs per month</h3><p>February–October 2026, by repository</p></div>
+            <div><h3>Merged PRs per month</h3><p>February–November 2026, by repository</p></div>
             <div class="legend" aria-label="Legend"><span><i class="backend"></i>backend</span><span><i class="libs"></i>libs</span></div>
           </div>
-          <div class="chart" role="img" aria-label="Bar chart of merged pull requests per month: March 13, April 2, June 1, August 6, October 1; other months zero.">
-            <div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Feb</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">13</span><div class="bar" style="height:100.0%"><span class="seg backend" style="flex:12" title="cpdb-backend-cups: 12"></span><span class="seg libs" style="flex:1" title="cpdb-libs: 1"></span></div></div><div class="chart-month">Mar</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">2</span><div class="bar" style="height:15.4%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span><span class="seg libs" style="flex:1" title="cpdb-libs: 1"></span></div></div><div class="chart-month">Apr</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">May</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">1</span><div class="bar" style="height:7.7%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span></div></div><div class="chart-month">Jun</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Jul</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">6</span><div class="bar" style="height:46.2%"><span class="seg backend" style="flex:4" title="cpdb-backend-cups: 4"></span><span class="seg libs" style="flex:2" title="cpdb-libs: 2"></span></div></div><div class="chart-month">Aug</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Sep</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">1</span><div class="bar" style="height:7.7%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span></div></div><div class="chart-month">Oct</div></div>
+          <div class="chart" role="img" aria-label="Bar chart of merged pull requests per month: March 13, April 2, June 1, August 6, October 1, November 1; other months zero.">
+            <div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Feb</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">13</span><div class="bar" style="height:100.0%"><span class="seg backend" style="flex:12" title="cpdb-backend-cups: 12"></span><span class="seg libs" style="flex:1" title="cpdb-libs: 1"></span></div></div><div class="chart-month">Mar</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">2</span><div class="bar" style="height:15.4%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span><span class="seg libs" style="flex:1" title="cpdb-libs: 1"></span></div></div><div class="chart-month">Apr</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">May</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">1</span><div class="bar" style="height:7.7%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span></div></div><div class="chart-month">Jun</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Jul</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">6</span><div class="bar" style="height:46.2%"><span class="seg backend" style="flex:4" title="cpdb-backend-cups: 4"></span><span class="seg libs" style="flex:2" title="cpdb-libs: 2"></span></div></div><div class="chart-month">Aug</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count muted-count">0</span><div class="bar zero"></div></div><div class="chart-month">Sep</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">1</span><div class="bar" style="height:7.7%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span></div></div><div class="chart-month">Oct</div></div><div class="chart-col"><div class="bar-area"><span class="bar-count">1</span><div class="bar" style="height:7.7%"><span class="seg backend" style="flex:1" title="cpdb-backend-cups: 1"></span></div></div><div class="chart-month">Nov</div></div>
           </div>
-          <div class="chart-foot"><span>Peak: March 2026 · 13 PRs</span><span>Total: 23 merged PRs</span></div>
+          <div class="chart-foot"><span>Peak: March 2026 · 13 PRs</span><span>Total: 24 merged PRs</span></div>
         </div>
         <div class="panel repo-panel">
           <div class="panel-head"><div><h3>Repository split</h3><p>Final merged state</p></div></div>
@@ -724,10 +741,10 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
             <span class="repo-title"><span class="repo-dot backend"></span>cpdb-backend-cups</span>
             <a class="repo-link" href="https://github.com/OpenPrinting/cpdb-backend-cups" target="_blank" rel="noopener">repository</a>
           </div>
-          <div class="repo-big">19 <span>merged PRs</span></div>
-          <div class="repo-stats"><span class="diff compact"><span class="add">+1,984</span><span class="del">−251</span><span class="file-count">10 files</span></span></div>
-          <div class="repo-meter"><span class="backend" style="width:82.6%"></span></div>
-          <div class="repo-caption">19 of 23 merged PRs</div>
+          <div class="repo-big">20 <span>merged PRs</span></div>
+          <div class="repo-stats"><span class="diff compact"><span class="add">+3,479</span><span class="del">−263</span><span class="file-count">12 files</span></span></div>
+          <div class="repo-meter"><span class="backend" style="width:83.3%"></span></div>
+          <div class="repo-caption">20 of 24 merged PRs</div>
         </article>
         <article class="repo-card">
           <div class="repo-card-head">
@@ -736,15 +753,15 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
           </div>
           <div class="repo-big">4 <span>merged PRs</span></div>
           <div class="repo-stats"><span class="diff compact"><span class="add">+1,406</span><span class="del">−238</span><span class="file-count">7 files</span></span></div>
-          <div class="repo-meter"><span class="libs" style="width:17.4%"></span></div>
-          <div class="repo-caption">4 of 23 merged PRs</div>
+          <div class="repo-meter"><span class="libs" style="width:16.7%"></span></div>
+          <div class="repo-caption">4 of 24 merged PRs</div>
         </article>
         </div>
       </div>
       <div class="panel churn-panel">
         <div class="panel-head"><div><h3>Most-touched files</h3><p>Combined additions and deletions across merged commits</p></div></div>
         <div class="churn-grid">
-          <div class="churn-row"><div class="churn-label">libs · cpdb/cpdb-frontend.c</div><div class="churn-track"><span class="libs" style="width:100.0%"></span></div><div class="churn-val">1,323</div></div><div class="churn-row"><div class="churn-label">backend · src/backend_helper.c</div><div class="churn-track"><span class="backend" style="width:77.9%"></span></div><div class="churn-val">1,031</div></div><div class="churn-row"><div class="churn-label">backend · src/print_backend_cups.c</div><div class="churn-track"><span class="backend" style="width:22.2%"></span></div><div class="churn-val">294</div></div><div class="churn-row"><div class="churn-label">backend · src/test-internal.h</div><div class="churn-track"><span class="backend" style="width:21.2%"></span></div><div class="churn-val">281</div></div><div class="churn-row"><div class="churn-label">backend · src/run-tests.sh</div><div class="churn-track"><span class="backend" style="width:14.1%"></span></div><div class="churn-val">187</div></div><div class="churn-row"><div class="churn-label">libs · cpdb/cpdb-frontend.h</div><div class="churn-track"><span class="libs" style="width:13.8%"></span></div><div class="churn-val">182</div></div><div class="churn-row"><div class="churn-label">backend · src/backend_helper.h</div><div class="churn-track"><span class="backend" style="width:8.4%"></span></div><div class="churn-val">111</div></div><div class="churn-row"><div class="churn-label">backend · src/test_extractHostFromURI.c</div><div class="churn-track"><span class="backend" style="width:7.3%"></span></div><div class="churn-val">97</div></div>
+          <div class="churn-row"><div class="churn-label">backend · src/backend_helper.c</div><div class="churn-track"><span class="backend" style="width:100.0%"></span></div><div class="churn-val">2,028</div></div><div class="churn-row"><div class="churn-label">libs · cpdb/cpdb-frontend.c</div><div class="churn-track"><span class="libs" style="width:65.2%"></span></div><div class="churn-val">1,323</div></div><div class="churn-row"><div class="churn-label">backend · src/test_ppd_options.c</div><div class="churn-track"><span class="backend" style="width:16.5%"></span></div><div class="churn-val">335</div></div><div class="churn-row"><div class="churn-label">backend · src/print_backend_cups.c</div><div class="churn-track"><span class="backend" style="width:14.9%"></span></div><div class="churn-val">303</div></div><div class="churn-row"><div class="churn-label">backend · src/test-internal.h</div><div class="churn-track"><span class="backend" style="width:13.9%"></span></div><div class="churn-val">281</div></div><div class="churn-row"><div class="churn-label">backend · src/run-tests.sh</div><div class="churn-track"><span class="backend" style="width:10.0%"></span></div><div class="churn-val">203</div></div><div class="churn-row"><div class="churn-label">libs · cpdb/cpdb-frontend.h</div><div class="churn-track"><span class="libs" style="width:9.0%"></span></div><div class="churn-val">182</div></div><div class="churn-row"><div class="churn-label">backend · src/test_settings_options.c</div><div class="churn-track"><span class="backend" style="width:6.6%"></span></div><div class="churn-val">134</div></div>
         </div>
       </div>
     </section>
@@ -752,7 +769,7 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
     <section class="section" id="workstreams">
       <div class="section-head">
         <p class="kicker">Workstreams</p>
-        <h2>Seven threads of contribution</h2>
+        <h2>Eight threads of contribution</h2>
         <p>The same work viewed by problem area rather than by date. PR counts and line totals are for merged PRs only.</p>
       </div>
       <div class="workstream-grid">
@@ -806,6 +823,13 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
           <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/74" target="_blank" rel="noopener" title="Fix translation leaks">#74</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/75" target="_blank" rel="noopener" title="Fix get_all_options leaks">#75</a><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/76" target="_blank" rel="noopener" title="Fix unmatched cppcheck suppression">#76</a></div>
           <div class="ws-foot"><span class="diff compact"><span class="add">+172</span><span class="del">−52</span><span class="file-count">7 files</span></span></div>
         </article>
+        <article class="workstream">
+          <div class="ws-top"><span class="ws-num">08</span><span class="ws-prs">1 PR</span></div>
+          <h3>Driver PPD options</h3>
+          <p>Fetched vendor PPD keywords over IPP, localized them with libcups, merged PPD and IPP options that share a concept, and submitted both forms so CUPS 2.x driver queues expose their real settings.</p>
+          <div class="chip-row"><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/81" target="_blank" rel="noopener" title="fix #63: expose vendor PPD options on CUPS 2.x driver-based queues">#81</a></div>
+          <div class="ws-foot"><span class="diff compact"><span class="add">+1,495</span><span class="del">−12</span><span class="file-count">7 files</span></span></div>
+        </article>
       </div>
     </section>
 
@@ -813,7 +837,7 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
       <div class="section-head">
         <p class="kicker">Pull request ledger</p>
         <h2>Every pull request</h2>
-        <p>All 24 PRs are listed: 23 merged, plus #54, which was closed in favour of #55. Changed-file counts from GitHub may overlap between PRs; the headline uses unique paths from merged commits.</p>
+        <p>All 25 PRs are listed: 24 merged, plus #54, which was closed in favour of #55. Changed-file counts from GitHub may overlap between PRs; the headline uses unique paths from merged commits.</p>
       </div>
       <div class="table-wrap">
         <table>
@@ -1027,6 +1051,15 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
           <td class="num-cell"><span class="diff compact"><span class="add">+82</span><span class="del">−12</span></span></td>
           <td class="num-plain">3</td>
         </tr>
+        <tr>
+          <td class="date-cell">Nov 16, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="pr-link backend" href="https://github.com/OpenPrinting/cpdb-backend-cups/pull/81" target="_blank" rel="noopener" title="fix #63: expose vendor PPD options on CUPS 2.x driver-based queues">#81</a></td>
+          <td class="title-cell"><span class="ledger-title">Vendor PPD options for driver queues</span><span class="ledger-full">fix #63: expose vendor PPD options on CUPS 2.x driver-based queues</span></td>
+          <td><span class="theme-tag">Driver PPD options</span></td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+1,495</span><span class="del">−12</span></span></td>
+          <td class="num-plain">7</td>
+        </tr>
         <tr class="closed-row">
           <td class="date-cell">—</td>
           <td><span class="repo-badge backend">backend</span></td>
@@ -1048,13 +1081,20 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
       </div>
       <div class="appendix-grid">
         <details>
-          <summary>Merged commits on upstream master <span>24 commits</span></summary>
+          <summary>Merged commits on upstream master <span>25 commits</span></summary>
           <div class="details-body">
             <div class="table-wrap">
               <table>
                 <caption>Git history from OpenPrinting/cpdb-backend-cups and OpenPrinting/cpdb-libs, filtered to Souptik De's author email.</caption>
                 <thead><tr><th scope="col">Date</th><th scope="col">Repo</th><th scope="col">Commit</th><th scope="col">Subject</th><th scope="col">Diff</th></tr></thead>
                 <tbody>
+        <tr>
+          <td class="date-cell">Nov 16, 2026</td>
+          <td><span class="repo-badge backend">backend</span></td>
+          <td><a class="commit-link" href="https://github.com/OpenPrinting/cpdb-backend-cups/commit/91b1d5217590b41d5b4b9d78df6bbb950041e138" target="_blank" rel="noopener"><code>91b1d521</code></a></td>
+          <td class="commit-subject">Expose PPD file options on CUPS-2.x-driver-based queues (#81)</td>
+          <td class="num-cell"><span class="diff compact"><span class="add">+1,495</span><span class="del">−12</span></span></td>
+        </tr>
         <tr>
           <td class="date-cell">Oct 11, 2026</td>
           <td><span class="repo-badge backend">backend</span></td>
@@ -1234,6 +1274,7 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
             <p>Work was developed on topic branches and squash-merged. The branch history also contains pre-squash iterations, verification logs, cppcheck runs, and CUPS 3.x compatibility shims. Key branch families:</p>
             <div class="branch-list">
               <code>fix-cupsd-lookup-fallback</code>
+              <code>fix/63-ppd-options</code>
               <code>fix-remove-unmatched-suppression</code>
               <code>task-b-general-leak-fixes</code>
               <code>task-b-general-leak-fixes-v2</code>
@@ -1249,8 +1290,8 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
             <ul>
               <li>Aggregated the identities <strong>Souptik De</strong> and <strong>Souptik-De</strong> under the shared email <code>souptikde2005@gmail.com</code>.</li>
               <li>Scope: <a href="https://github.com/OpenPrinting/cpdb-backend-cups" target="_blank" rel="noopener">OpenPrinting/cpdb-backend-cups</a> and <a href="https://github.com/OpenPrinting/cpdb-libs" target="_blank" rel="noopener">OpenPrinting/cpdb-libs</a>. The workspace libcups checkout was also checked; it contains no Souptik De commits.</li>
-              <li>PR status, dates, review/merge actor, and per-PR line/file counts come from GitHub PR metadata captured on Oct 24, 2026. All 23 merged PRs were merged by Till Kamppeter.</li>
-              <li>Merged-commit and unique-file counts come from <code>upstream/master</code> after fetching on Oct 24, 2026. Line totals in the headline and tables are per-PR sums; commit-level totals differ slightly because of squash/rebase history (+3,353 / −444).</li>
+              <li>PR status, dates, review/merge actor, and per-PR line/file counts come from GitHub PR metadata captured on Nov 19, 2026. All 24 merged PRs were merged by Till Kamppeter.</li>
+              <li>Merged-commit and unique-file counts come from <code>upstream/master</code> after fetching on Nov 19, 2026. Line totals in the headline and tables are per-PR sums; commit-level totals differ slightly because of squash/rebase history (+4,848 / −456).</li>
               <li>PR #54 is shown for completeness but excluded from all merged totals. Merge commits are excluded from line counts.</li>
             </ul>
           </article>
@@ -1264,7 +1305,7 @@ footer { border-top: 1px solid var(--line); background: var(--surface); padding:
 <footer>
   <div class="wrap footer-inner">
     <div class="footer-brand">Souptik De · CPDB Stack Contribution Report <span>· OpenPrinting</span></div>
-    <div class="footer-meta">February 10 – October 11, 2026 · Prepared October 24, 2026</div>
+    <div class="footer-meta">February 10 – November 16, 2026 · Prepared November 19, 2026</div>
   </div>
 </footer>
 </body>
